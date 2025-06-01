@@ -82,3 +82,17 @@ class CardService:
             Dict[str, Any]: The response from the delete operation.
         """
         return await self.client.DELETE(f"/cards/{card_id}")
+
+    async def assign_card_to_member(self, card_id: str, member_id: str) -> TrelloCard:
+        """Assigns a member to a card.
+
+        Args:
+            card_id (str): The ID of the card to assign the member to.
+            member_id (str): The ID of the member to assign.
+
+        Returns:
+            Dict[str, Any]: The response from the assignment operation.
+        """
+        data = {"value": member_id}
+        return  await self.client.POST(f"/cards/{card_id}/idMembers", data=data)
+    

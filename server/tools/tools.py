@@ -11,7 +11,8 @@ def register_tools(mcp):
     mcp.add_tool(board.get_board)
     mcp.add_tool(board.get_boards)
     mcp.add_tool(board.get_board_labels)
-
+    mcp.add_tool(board.get_board_members)
+    
     # List Tools
     mcp.add_tool(list.get_list)
     mcp.add_tool(list.get_lists)
@@ -25,7 +26,7 @@ def register_tools(mcp):
     mcp.add_tool(card.create_card)
     mcp.add_tool(card.update_card)
     mcp.add_tool(card.delete_card)
-
+    mcp.add_tool(card.assign_card_to_member)
     # Checklist Tools
     mcp.add_tool(checklist.get_checklist)
     mcp.add_tool(checklist.get_card_checklists)

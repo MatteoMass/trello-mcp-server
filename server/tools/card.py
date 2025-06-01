@@ -129,3 +129,25 @@ async def delete_card(ctx: Context, card_id: str) -> dict:
         logger.error(error_msg)
         await ctx.error(error_msg)
         raise
+
+async def assign_card_to_member(ctx: Context, card_id: str, member_id: str) -> TrelloCard:
+    """Retrieves a specific card by its ID.
+
+    Args:
+        card_id (str): The ID of the card to retrieve.
+        member_id (str): The ID of the member to assign to the card.
+
+    Returns:
+        TrelloCard: The card object containing card details.
+    """
+    try:
+        logger.info(f"Getting card with ID: {card_id}")
+        result = await service.assign_card_to_member(card_id, member_id)
+        logger.info(f"Successfully assigned card: {card_id}")
+        return result
+    except Exception as e:
+        error_msg = f"Failed to assign card: {str(e)}"
+        logger.error(error_msg)
+        await ctx.error(error_msg)
+        raise
+    
