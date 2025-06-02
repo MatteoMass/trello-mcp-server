@@ -96,3 +96,17 @@ class CardService:
         data = {"value": member_id}
         return  await self.client.POST(f"/cards/{card_id}/idMembers", data=data)
     
+    async def move_card_to_list(self, card_id: str, list_id: str) -> TrelloCard:
+        """Moves a card to a different list.
+
+        Args:
+            card_id (str): The ID of the card to move.
+            list_id (str): The ID of the list to move the card to.
+
+        Returns:
+            TrelloCard: The moved card object.
+        """
+        data = {"idList": list_id}
+        response = await self.client.PUT(f"/cards/{card_id}", data=data)
+        return TrelloCard(**response)
+    

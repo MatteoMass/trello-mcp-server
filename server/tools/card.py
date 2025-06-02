@@ -151,3 +151,22 @@ async def assign_card_to_member(ctx: Context, card_id: str, member_id: str) -> T
         await ctx.error(error_msg)
         raise
     
+async def move_card_to_list(ctx: Context, card_id: str, list_id: str) -> TrelloCard:
+    """Moves a card to a different list.
+    Args:
+        card_id (str): The ID of the card to move.
+        list_id (str): The ID of the list to move the card to.
+    Returns:
+        TrelloCard: The moved card object.
+    """     
+
+    try:
+        logger.info(f"Moving card with ID: {card_id}")
+        result = await service.move_card_to_list(card_id, list_id)
+        logger.info(f"Successfully moved card: {card_id}")
+        return result
+    except Exception as e:
+        error_msg = f"Failed to assign card: {str(e)}"
+        logger.error(error_msg)
+        await ctx.error(error_msg)
+        raise
