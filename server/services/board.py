@@ -40,20 +40,6 @@ class BoardService:
         response = await self.client.GET(f"/members/{member_id}/boards")
         return [TrelloBoard(**board) for board in response]
     
-
-    async def get_boards_names(self, member_id: str = "me") -> List[str]:
-        """Retrieves all boards for a given member.
-
-        Args:
-            member_id (str): The ID of the member whose boards to retrieve. Defaults to "me" for the authenticated user.
-
-        Returns:
-            List[TrelloBoard]: A list of board objects.
-        """
-        response = await self.client.GET(f"/members/{member_id}/boards")
-        boards = [TrelloBoard(**board) for board in response]
-        return [board.name for board in boards]
-
     async def get_board_labels(self, board_id: str) -> List[TrelloLabel]:
         """Retrieves all labels for a specific board.
 

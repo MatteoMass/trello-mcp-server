@@ -37,7 +37,7 @@ async def get_board(ctx: Context, board_id: str) -> TrelloBoard:
         raise
 
 
-async def get_boards(ctx: Context) -> dict[str, List[TrelloBoard]]:
+async def get_boards(ctx: Context) -> List[TrelloBoard]:
     """Retrieves all boards for the authenticated user.
 
     Returns:
@@ -54,22 +54,7 @@ async def get_boards(ctx: Context) -> dict[str, List[TrelloBoard]]:
         await ctx.error(error_msg)
         raise
 
-async def get_boards_names(ctx: Context) -> dict[str, List[str]]:
-    """Retrieves all boards for the authenticated user.
 
-    Returns:
-        List[TrelloBoard]: A list of board objects.
-    """
-    try:
-        logger.info("Getting all boards")
-        result = await service.get_boards_names()
-        logger.info(f"Successfully retrieved {len(result)} boards")
-        return result
-    except Exception as e:
-        error_msg = f"Failed to get boards: {str(e)}"
-        logger.error(error_msg)
-        await ctx.error(error_msg)
-        raise
 
 async def get_board_labels(ctx: Context, board_id: str) -> List[TrelloLabel]:
     """Retrieves all labels for a specific board.

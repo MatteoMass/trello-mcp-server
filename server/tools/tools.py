@@ -10,7 +10,6 @@ def register_tools(mcp):
     # Board Tools
     mcp.add_tool(board.get_board)
     mcp.add_tool(board.get_boards)
-    mcp.add_tool(board.get_boards_names)
     mcp.add_tool(board.get_board_labels)
     mcp.add_tool(board.get_board_members)
     
@@ -19,7 +18,7 @@ def register_tools(mcp):
     mcp.add_tool(list.get_lists)
     mcp.add_tool(list.create_list)
     mcp.add_tool(list.update_list)
-    mcp.add_tool(list.delete_list)
+    #mcp.add_tool(list.delete_list)
 
     # Card Tools
     mcp.add_tool(card.get_card)
