@@ -166,7 +166,28 @@ async def move_card_to_list(ctx: Context, card_id: str, list_id: str) -> TrelloC
         logger.info(f"Successfully moved card: {card_id}")
         return result
     except Exception as e:
-        error_msg = f"Failed to assign card: {str(e)}"
+        error_msg = f"Failed to move card: {str(e)}"
+        logger.error(error_msg)
+        await ctx.error(error_msg)
+        raise
+
+async def add_comment_to_card(ctx:Context, card_id:str, comment: str) -> TrelloCard:
+    """Adds a comment to a card.
+
+    Args:
+        card_id (str): The ID of the card to add the comment to.
+        comment (str): The content of the comment.
+
+    Returns:
+       TrelloCard: The response from the comment addition operation.
+    """
+    try:
+        logger.info(f"Adding commento to card with ID: {card_id}")
+        result = await service.add_comment_to_card(card_id, comment)
+        logger.info(f"Successfully added comment to card: {card_id}")
+        return result
+    except Exception as e:
+        error_msg = f"Failed to add comment to card: {str(e)}"
         logger.error(error_msg)
         await ctx.error(error_msg)
         raise

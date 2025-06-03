@@ -110,3 +110,18 @@ class CardService:
         response = await self.client.PUT(f"/cards/{card_id}", data=data)
         return TrelloCard(**response)
     
+
+    async def add_comment_to_card(self, card_id:str, comment: str) -> TrelloCard:
+        """Adds a comment to a card.
+
+        Args:
+            card_id (str): The ID of the card to add the comment to.
+            comment (str): The content of the comment.
+
+        Returns:
+            TrelloCard: The response from the comment addition operation.
+        """
+        data = {"text": comment}
+        response = await self.client.POST(f"/cards/{card_id}/actions/comments", data=data)
+        return TrelloCard(**response)
+

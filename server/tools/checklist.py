@@ -102,7 +102,7 @@ async def add_checkitem(
 
 
 async def update_checkitem(
-    checklist_id: str,
+    card_id: str,
     checkitem_id: str,
     name: Optional[str] = None,
     checked: Optional[bool] = None,
@@ -112,7 +112,7 @@ async def update_checkitem(
     Update a checkitem in a checklist.
 
     Args:
-        checklist_id (str): The ID of the checklist containing the item
+        card_id (str): The ID of the card containing the checklist
         checkitem_id (str): The ID of the checkitem to update
         name (Optional[str]): New name for the checkitem
         checked (Optional[bool]): New checked state
@@ -122,7 +122,7 @@ async def update_checkitem(
         Dict: The updated checkitem data
     """
     return await service.update_checkitem(
-        checklist_id, checkitem_id, name, checked, pos
+        card_id, checkitem_id, name, checked, pos
     )
 
 

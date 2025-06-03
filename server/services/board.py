@@ -28,7 +28,7 @@ class BoardService:
         response = await self.client.GET(f"/boards/{board_id}")
         return TrelloBoard(**response)
 
-    async def get_boards(self, member_id: str = "me") -> dict[str, List[TrelloBoard]]:
+    async def get_boards(self, member_id: str = "me") -> List[TrelloBoard]:
         """Retrieves all boards for a given member.
 
         Args:
@@ -38,10 +38,10 @@ class BoardService:
             List[TrelloBoard]: A list of board objects.
         """
         response = await self.client.GET(f"/members/{member_id}/boards")
-        return {"boards": [TrelloBoard(**board) for board in response]}
+        return [TrelloBoard(**board) for board in response]
     
 
-    async def get_boards_names(self, member_id: str = "me") -> dict[str, List[str]]:
+    async def get_boards_names(self, member_id: str = "me") -> List[str]:
         """Retrieves all boards for a given member.
 
         Args:
@@ -52,7 +52,7 @@ class BoardService:
         """
         response = await self.client.GET(f"/members/{member_id}/boards")
         boards = [TrelloBoard(**board) for board in response]
-        return {"boards_names": [board.name for board in boards]}   
+        return [board.name for board in boards]
 
     async def get_board_labels(self, board_id: str) -> List[TrelloLabel]:
         """Retrieves all labels for a specific board.

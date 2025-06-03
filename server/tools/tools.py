@@ -29,6 +29,7 @@ def register_tools(mcp):
     mcp.add_tool(card.delete_card)
     mcp.add_tool(card.assign_card_to_member)
     mcp.add_tool(card.move_card_to_list)
+    mcp.add_tool(card.add_comment_to_card)
     
     # Checklist Tools
     mcp.add_tool(checklist.get_checklist)

@@ -116,9 +116,10 @@ class ChecklistService:
             f"/checklists/{checklist_id}/checkItems", data=data
         )
 
+
     async def update_checkitem(
         self,
-        checklist_id: str,
+        card_id: str,
         checkitem_id: str,
         name: Optional[str] = None,
         checked: Optional[bool] = None,
@@ -128,7 +129,7 @@ class ChecklistService:
         Update a checkitem in a checklist.
 
         Args:
-            checklist_id (str): The ID of the checklist containing the item
+            card_id (str): The ID of the card containing the checklist
             checkitem_id (str): The ID of the checkitem to update
             name (Optional[str]): New name for the checkitem
             checked (Optional[bool]): New checked state
@@ -141,11 +142,11 @@ class ChecklistService:
         if name:
             data["name"] = name
         if checked is not None:
-            data["checked"] = checked
+            data["state"] = "complete" if checked else "incomplete"
         if pos:
             data["pos"] = pos
         return await self.client.PUT(
-            f"/checklists/{checklist_id}/checkItems/{checkitem_id}", data=data
+            f"/cards/{card_id}/checkItem/{checkitem_id}", data=data
         )
 
     async def delete_checkitem(self, checklist_id: str, checkitem_id: str) -> Dict:
